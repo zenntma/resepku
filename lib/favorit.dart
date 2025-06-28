@@ -18,13 +18,12 @@ class HalamanFavorit extends StatelessWidget {
                 children: [
                   const Text(
                     'Favorit',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/chef_icon.png'), // Gambar chef
+                    backgroundImage: AssetImage(
+                      'assets/chef_icon.png',
+                    ), // Gambar chef
                     radius: 20,
                   ),
                 ],
@@ -50,7 +49,7 @@ class HalamanFavorit extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
               child: Row(
