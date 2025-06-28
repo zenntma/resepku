@@ -21,9 +21,7 @@ class HalamanFavorit extends StatelessWidget {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   CircleAvatar(
-                    backgroundImage: AssetImage(
-                      'assets/chef_icon.png',
-                    ), // Gambar chef
+                    backgroundImage: AssetImage('assets/images/profil.png'),
                     radius: 20,
                   ),
                 ],

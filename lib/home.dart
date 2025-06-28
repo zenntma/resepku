@@ -105,9 +105,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.only(right: 16),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-              ),
+              backgroundImage: AssetImage('assets/images/profil.png'),
               radius: 20,
             ),
           ),
