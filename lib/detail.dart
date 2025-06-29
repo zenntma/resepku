@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resepku/profil.dart';
+import 'package:resepku/tambah.dart';
+import 'package:resepku/favorit.dart';
+import 'package:resepku/home.dart';
 
 class DetailResepPage extends StatelessWidget {
   final String title;
@@ -23,18 +27,33 @@ class DetailResepPage extends StatelessWidget {
         backgroundColor: const Color(0xFFF5F0E7),
         elevation: 0,
         title: const Text(
-          'Detail Resep', //buat bagian text ini rata tengah
+          'Detail Resep',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 195, 32),
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/profil.png'),
-              radius: 20,
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder:
+                        (context) => const HalamanProfil(
+                          username: 'user123',
+                          nama: 'Budi Santoso',
+                          email: 'budi@gmail.com',
+                        ),
+                  ),
+                );
+              },
+              child: const CircleAvatar(
+                backgroundImage: AssetImage('assets/images/profil.png'),
+                radius: 20,
+              ),
             ),
           ),
         ],
@@ -74,14 +93,9 @@ class DetailResepPage extends StatelessWidget {
             const SizedBox(height: 16),
 
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 20,
-              ), // ✅ Padding antara border dan gambar
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  8,
-                ), // ✅ lebih kecil dari Container
+                borderRadius: BorderRadius.circular(8),
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: Image.asset(image, fit: BoxFit.cover),
@@ -126,15 +140,69 @@ class DetailResepPage extends StatelessWidget {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade300,
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(Icons.home, size: 28),
-            Icon(Icons.add, size: 28),
-            Icon(Icons.favorite, size: 28),
+          children: [
+            // Home
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.home, size: 28),
+                ),
+              ),
+            ),
+
+            // Add
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TambahResep(),
+                    ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.add, size: 28),
+                ),
+              ),
+            ),
+
+            // Favorite
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HalamanFavorit(),
+                    ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.favorite, size: 28),
+                ),
+              ),
+            ),
           ],
         ),
       ),

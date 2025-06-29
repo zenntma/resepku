@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:resepku/detail.dart';
+import 'package:resepku/profil.dart';
+import 'package:resepku/tambah.dart';
+import 'package:resepku/favorit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -101,16 +104,32 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/profil.png'),
-              radius: 20,
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder:
+                        (context) => const HalamanProfil(
+                          username: 'user123',
+                          nama: 'Budi Santoso',
+                          email: 'budi@gmail.com',
+                        ),
+                  ),
+                );
+              },
+              child: const CircleAvatar(
+                backgroundImage: AssetImage('assets/images/profil.png'),
+                radius: 20,
+              ),
             ),
           ),
         ],
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -170,15 +189,69 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade300,
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(Icons.home, size: 28),
-            Icon(Icons.add, size: 28),
-            Icon(Icons.favorite, size: 28),
+          children: [
+            // Home
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const HomePage()),
+                  // );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.home, size: 28),
+                ),
+              ),
+            ),
+
+            // Add
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TambahResep(),
+                    ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.add, size: 28),
+                ),
+              ),
+            ),
+
+            // Favorite
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HalamanFavorit(),
+                    ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.favorite, size: 28),
+                ),
+              ),
+            ),
           ],
         ),
       ),
